@@ -1,26 +1,50 @@
 'use client';
 
-import {useState} from 'react';
-import {CheckCircle, Mail, MapPin, Send} from 'lucide-react';
+import {useRef, useState} from 'react';
+import {CheckCircle, Mail, MapPin, Send, AlertCircle, Loader2} from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import {LiquidGlassCard} from '../../ui/liquid-glass-card.tsx';
 import {GithubIcon} from '../svg/GithubIcon';
 import {LinkedInIcon} from '../svg/LinkedInIcon';
 import {AnimatedBlock, Label, SectionTitle, SectionWrapper, Text} from '../../ui/Typography.tsx';
 
-export default function Contact() {
-    const [submitted, setSubmitted] = useState(false);
+type Status = 'idle' | 'sending' | 'success' | 'error';
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+export default function Contact() {
+    const formRef = useRef<HTMLFormElement>(null);
+    const [status, setStatus] = useState<Status>('idle');
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const form = e.currentTarget;
-        const name = (form.elements.namedItem('name') as HTMLInputElement).value;
-        const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+        if (!formRef.current) return;
+
+        const form = formRef.current;
+        const name = (form.elements.namedItem('from_name') as HTMLInputElement).value;
+        const email = (form.elements.namedItem('from_email') as HTMLInputElement).value;
         const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
-        const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-        const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`);
-        window.open(`mailto:maelseewald@gmx.net?subject=${subject}&body=${body}`);
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 3000);
+
+        setStatus('sending');
+
+        try {
+            await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                {
+                    name,
+                    email,
+                    message,
+                    title: `Portfolio Contact from ${name}`,
+                    time: new Date().toLocaleString('de-CH'),
+                },
+                {publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY},
+            );
+            setStatus('success');
+            formRef.current.reset();
+            setTimeout(() => setStatus('idle'), 4000);
+        } catch {
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 4000);
+        }
     };
 
     const inputClass =
@@ -106,12 +130,12 @@ export default function Contact() {
                         borderRadius="20px"
                         className="w-full"
                     >
-                        <form onSubmit={handleSubmit} className="relative z-30 flex flex-col gap-4 p-6 sm:p-8">
+                        <form ref={formRef} onSubmit={handleSubmit} className="relative z-30 flex flex-col gap-4 p-6 sm:p-8">
                             <div className="flex flex-col gap-1.5">
                                 <Label>Name</Label>
                                 <input
                                     id="name"
-                                    name="name"
+                                    name="from_name"
                                     type="text"
                                     required
                                     placeholder="Your name"
@@ -123,7 +147,7 @@ export default function Contact() {
                                 <Label>Email</Label>
                                 <input
                                     id="email"
-                                    name="email"
+                                    name="from_email"
                                     type="email"
                                     required
                                     placeholder="your@email.com"
@@ -143,17 +167,31 @@ export default function Contact() {
                                 />
                             </div>
 
+                            {status === 'error' && (
+                                <div className="flex items-center gap-2 rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-400">
+                                    <AlertCircle className="h-4 w-4 shrink-0"/>
+                                    Something went wrong. Please try again or email me directly.
+                                </div>
+                            )}
+
                             <button
                                 type="submit"
-                                disabled={submitted}
+                                disabled={status === 'sending' || status === 'success'}
                                 className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-(--color-nav-active-bg) px-6 py-3 text-sm font-semibold text-(--color-nav-active-text) transition-opacity hover:opacity-80 disabled:opacity-60"
                             >
-                                {submitted ? (
+                                {status === 'sending' && (
+                                    <>
+                                        <Loader2 className="h-4 w-4 animate-spin"/>
+                                        Sending…
+                                    </>
+                                )}
+                                {status === 'success' && (
                                     <>
                                         <CheckCircle className="h-4 w-4"/>
-                                        Message opened!
+                                        Sent!
                                     </>
-                                ) : (
+                                )}
+                                {(status === 'idle' || status === 'error') && (
                                     <>
                                         <Send className="h-4 w-4"/>
                                         Send Message
