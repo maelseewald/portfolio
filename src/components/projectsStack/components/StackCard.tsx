@@ -42,15 +42,11 @@ export function StackCard({
     return (
         <div
             ref={container}
-            className="sticky top-0 flex h-screen items-center justify-center"
+            className="relative flex justify-center py-3 lg:sticky lg:top-0 lg:h-screen lg:items-center lg:py-0"
         >
             <motion.div
-                style={{
-                    scale,
-                    top: `calc(0vh + ${i * 25}px)`,
-                    width: '72%',
-                }}
-                className="relative top-[25%] origin-top"
+                style={{scale, top: `calc(0vh + ${i * 25}px)`}}
+                className="relative w-[92%] origin-top sm:w-[85%] lg:w-[72%]"
             >
                 {/* Glow border wrapper */}
                 <div
@@ -69,85 +65,85 @@ export function StackCard({
                         borderRadius="20px"
                         className="w-full"
                     >
-                        <div className="relative z-30 flex h-[58vh] w-full gap-6 p-4 sm:p-6 lg:p-8">
+                        <div className="relative z-30 w-full p-4 sm:p-6 lg:p-8">
 
                             {/* Ghost number */}
                             <div
                                 className="pointer-events-none absolute right-6 top-4 select-none font-bold leading-none text-indigo-500/10 dark:text-indigo-400/8"
-                                style={{fontSize: 'clamp(80px, 10vw, 140px)'}}
+                                style={{fontSize: 'clamp(60px, 8vw, 140px)'}}
                                 aria-hidden="true"
                             >
                                 {String(i + 1).padStart(2, '0')}
                             </div>
 
-                            {/* Left – Description & Links */}
-                            <div className="flex w-[38%] flex-col justify-between py-2">
-                                <div className="flex flex-col gap-4">
-                                    <Text muted size="sm" className="leading-loose">{description}</Text>
+                            {/* Responsive layout: column on mobile, row on desktop */}
+                            <div className="flex flex-col gap-4 lg:h-[58vh] lg:flex-row lg:gap-6">
 
-                                    {tags && tags.length > 0 && (
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {tags.map((tag) => (
-                                                <span
-                                                    key={tag}
-                                                    className="rounded-full border border-(--color-surface-hover) bg-(--color-surface) px-2.5 py-0.5 text-xs font-medium text-(--color-text-muted)"
-                                                >
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    )}
+                                {/* Description & Links */}
+                                <div className="flex flex-col gap-4 lg:w-[38%] lg:justify-between lg:py-2">
+                                    <div className="flex flex-col gap-4">
+                                        <Text muted size="sm" className="leading-loose">{description}</Text>
+
+                                        {tags && tags.length > 0 && (
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {tags.map((tag) => (
+                                                    <span
+                                                        key={tag}
+                                                        className="rounded-full border border-(--color-surface-hover) bg-(--color-surface) px-2.5 py-0.5 text-xs font-medium text-(--color-text-muted)"
+                                                    >
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="flex flex-row gap-2">
+                                        {githubUrl && (
+                                            <a
+                                                href={githubUrl}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="flex items-center gap-1.5 rounded-full border border-(--color-surface-hover) bg-(--color-surface) px-3 py-1.5 text-xs font-medium text-(--color-text) transition-colors hover:bg-(--color-surface-hover)"
+                                            >
+                                                <GithubIcon className="h-3.5 w-3.5"/>
+                                                Code
+                                            </a>
+                                        )}
+                                        {projectUrl && (
+                                            <a
+                                                href={projectUrl}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="flex items-center gap-1.5 rounded-full bg-(--color-nav-active-bg) px-3 py-1.5 text-xs font-medium text-(--color-nav-active-text) transition-opacity hover:opacity-80"
+                                            >
+                                                <ExternalLink className="h-3.5 w-3.5"/>
+                                                Live Demo
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
 
-                                {/* Links */}
-                                <div className="flex flex-row gap-2">
-                                    {githubUrl && (
-                                        <a
-                                            href={githubUrl}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="flex items-center gap-1.5 rounded-full border border-(--color-surface-hover) bg-(--color-surface) px-3 py-1.5 text-xs font-medium text-(--color-text) transition-colors hover:bg-(--color-surface-hover)"
-                                        >
-                                            <GithubIcon className="h-3.5 w-3.5"/>
-                                            Code
-                                        </a>
-                                    )}
-                                    {projectUrl && (
-                                        <a
-                                            href={projectUrl}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="flex items-center gap-1.5 rounded-full bg-(--color-nav-active-bg) px-3 py-1.5 text-xs font-medium text-(--color-nav-active-text) transition-opacity hover:opacity-80"
-                                        >
-                                            <ExternalLink className="h-3.5 w-3.5"/>
-                                            Live Demo
-                                        </a>
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* Right – Image with title overlay */}
-                            <div className="relative h-full w-[62%] overflow-hidden rounded-2xl">
                                 {/* Image */}
-                                <motion.div className="absolute inset-0" style={{scale: imageScale}}>
-                                    <img
-                                        src={imageUrl}
-                                        alt={title}
-                                        className="h-full w-full object-cover"
-                                    />
-                                </motion.div>
+                                <div className="relative h-48 w-full overflow-hidden rounded-2xl sm:h-64 lg:h-full lg:w-[62%]">
+                                    <motion.div className="absolute inset-0" style={{scale: imageScale}}>
+                                        <img
+                                            src={imageUrl}
+                                            alt={title}
+                                            className="h-full w-full object-cover"
+                                        />
+                                    </motion.div>
 
-                                {/* Gradient overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"/>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"/>
 
-                                {/* Title on image */}
-                                <div className="absolute bottom-0 left-0 right-0 p-6">
-                                    <h2 className="text-2xl font-bold leading-tight text-white drop-shadow-lg sm:text-3xl">
-                                        {title}
-                                    </h2>
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
+                                        <h2 className="text-xl font-bold leading-tight text-white drop-shadow-lg sm:text-2xl lg:text-3xl">
+                                            {title}
+                                        </h2>
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </LiquidGlassCard>
                 </div>
