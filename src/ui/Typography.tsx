@@ -17,9 +17,9 @@ export function AnimatedBlock({children, delay = 0, className}: AnimatedBlockPro
     return (
         <motion.div
             ref={ref}
-            initial={{opacity: 0, y: 30}}
-            animate={isInView ? {opacity: 1, y: 0} : {opacity: 0, y: 30}}
-            transition={{duration: 0.6, delay, ease: 'easeOut'}}
+            initial={{opacity: 0, y: 24}}
+            animate={isInView ? {opacity: 1, y: 0} : {opacity: 0, y: 24}}
+            transition={{duration: 0.55, delay, ease: [0.22, 1, 0.36, 1]}}
             className={className}
         >
             {children}
@@ -30,15 +30,34 @@ export function AnimatedBlock({children, delay = 0, className}: AnimatedBlockPro
 interface SectionTitleProps {
     children: React.ReactNode;
     className?: string;
+    subtitle?: string;
 }
 
-export function SectionTitle({children, className}: SectionTitleProps) {
+export function SectionTitle({children, subtitle, className}: SectionTitleProps) {
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, {once: true, margin: '0px'});
+
     return (
-        <div className={cn('flex items-center justify-center py-8', className)}>
-            <h2 className="text-5xl font-bold text-(--color-text) md:text-7xl">
-                {children}
-            </h2>
-        </div>
+        <motion.div
+            ref={ref}
+            className={cn('flex flex-col items-center gap-3 py-8', className)}
+            initial={{opacity: 0, y: 20}}
+            animate={isInView ? {opacity: 1, y: 0} : {opacity: 0, y: 20}}
+            transition={{duration: 0.55, ease: [0.22, 1, 0.36, 1]}}
+        >
+            <div className="flex items-center gap-3">
+                <div className="h-px w-8 bg-(--color-accent) opacity-60"/>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-(--color-accent) opacity-80">
+                    {children}
+                </span>
+                <div className="h-px w-8 bg-(--color-accent) opacity-60"/>
+            </div>
+            {subtitle && (
+                <h2 className="text-center text-4xl font-bold md:text-5xl lg:text-6xl bg-linear-to-br from-(--color-text) to-indigo-400 bg-clip-text text-transparent dark:to-indigo-300">
+                    {subtitle}
+                </h2>
+            )}
+        </motion.div>
     );
 }
 
@@ -124,7 +143,7 @@ export function SectionWrapper({children, maxWidth = '5xl', className}: SectionW
     };
 
     return (
-        <div className={cn('mx-auto w-full px-6 py-20', widths[maxWidth], className)}>
+        <div className={cn('mx-auto w-full px-6 py-24', widths[maxWidth], className)}>
             {children}
         </div>
     );
