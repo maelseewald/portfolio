@@ -34,7 +34,7 @@ const Header = ({className}: { className?: string }) => {
     };
 
     return (
-        <div className={cn("w-full flex items-center justify-center py-5 fixed z-50", className)}>
+        <div className={cn("w-full flex items-center justify-center fixed z-50", className)} style={{paddingTop: `calc(1.25rem + env(safe-area-inset-top))`, paddingBottom: '1.25rem'}}>
             <LiquidGlassCard
                 glowIntensity="sm"
                 shadowIntensity="sm"
