@@ -1,29 +1,29 @@
 export default function BlobBackground() {
     return (
         <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-            {/* Top-left – indigo/violet */}
+            {/* Top-left – deep navy */}
             <div
-                className="absolute -left-48 -top-48 h-[500px] w-[500px] rounded-full bg-indigo-400/30 blur-[130px] dark:bg-indigo-600/15"
+                className="absolute -left-48 -top-48 h-[500px] w-[500px] rounded-full bg-blue-800/15 blur-[140px] dark:bg-blue-900/12"
                 style={{ animation: 'blob-drift-a 18s ease-in-out infinite' }}
             />
-            {/* Top-right – violet */}
+            {/* Top-right – steel blue */}
             <div
-                className="absolute -right-32 top-16 h-[380px] w-[380px] rounded-full bg-violet-300/25 blur-[110px] dark:bg-violet-500/12"
+                className="absolute -right-32 top-16 h-[380px] w-[380px] rounded-full bg-sky-700/12 blur-[120px] dark:bg-blue-800/8"
                 style={{ animation: 'blob-drift-b 22s ease-in-out infinite' }}
             />
-            {/* Center – indigo (very subtle) */}
+            {/* Center – very subtle blue */}
             <div
-                className="absolute left-1/2 top-[40%] h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-200/20 blur-[160px] dark:bg-indigo-500/8"
+                className="absolute left-1/2 top-[40%] h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/8 blur-[170px] dark:bg-blue-800/5"
                 style={{ animation: 'blob-drift-c 28s ease-in-out infinite' }}
             />
-            {/* Bottom-left – purple */}
+            {/* Bottom-left – navy */}
             <div
-                className="absolute -bottom-24 left-[8%] h-[420px] w-[420px] rounded-full bg-purple-300/25 blur-[120px] dark:bg-purple-500/12"
+                className="absolute -bottom-24 left-[8%] h-[420px] w-[420px] rounded-full bg-blue-900/12 blur-[130px] dark:bg-blue-900/8"
                 style={{ animation: 'blob-drift-d 20s ease-in-out infinite' }}
             />
-            {/* Bottom-right – indigo/blue */}
+            {/* Bottom-right – slate blue */}
             <div
-                className="absolute bottom-[8%] right-[4%] h-[320px] w-[320px] rounded-full bg-blue-300/20 blur-[100px] dark:bg-blue-500/10"
+                className="absolute bottom-[8%] right-[4%] h-[320px] w-[320px] rounded-full bg-blue-700/10 blur-[110px] dark:bg-blue-800/6"
                 style={{ animation: 'blob-drift-e 24s ease-in-out infinite' }}
             />
 

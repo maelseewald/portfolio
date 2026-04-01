@@ -35,7 +35,7 @@ interface SkillCategory {
 const categories: SkillCategory[] = [
     {
         title: 'Frontend',
-        color: 'from-indigo-500 to-violet-500',
+        color: 'from-blue-700 to-blue-900',
         skills: [
             {name: 'HTML / CSS', level: 95, icon: HtmlCssIcon},
             {name: 'Tailwind CSS', level: 85, icon: TailwindIcon},
@@ -45,7 +45,7 @@ const categories: SkillCategory[] = [
     },
     {
         title: 'Backend',
-        color: 'from-violet-500 to-purple-500',
+        color: 'from-sky-700 to-blue-800',
         skills: [
             {name: 'Node.js', level: 80, icon: NodejsIcon},
             {name: 'REST APIs', level: 80, icon: RestApiIcon},
@@ -55,7 +55,7 @@ const categories: SkillCategory[] = [
     },
     {
         title: 'Tools & Workflow',
-        color: 'from-purple-500 to-pink-500',
+        color: 'from-slate-600 to-blue-900',
         skills: [
             {name: 'VS Code / IntelliJ', level: 90, icon: IdeIcon},
             {name: 'Git', level: 80, icon: GitIcon},

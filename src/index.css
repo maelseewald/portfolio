@@ -12,8 +12,8 @@
     --color-nav-active-text: #ffffff;
     --color-nav-text: #111111;
     --glass-highlight: rgba(0, 0, 0, 0.07);
-    --color-accent: #6366f1;
-    --color-accent-muted: rgba(99, 102, 241, 0.15);
+    --color-accent: #1e3a5f;
+    --color-accent-muted: rgba(30, 58, 95, 0.1);
 }
 
 .dark {
@@ -26,8 +26,8 @@
     --color-nav-active-text: #08080f;
     --color-nav-text: #f0f0f0;
     --glass-highlight: rgba(255, 255, 255, 0.4);
-    --color-accent: #818cf8;
-    --color-accent-muted: rgba(129, 140, 248, 0.15);
+    --color-accent: #5b8ab8;
+    --color-accent-muted: rgba(91, 138, 184, 0.12);
 }
 
 #root {

@@ -18,7 +18,7 @@ function App() {
                     <Hero/>
                 </section>
 
-                <section id="projects" className="min-h-screen flex justify-center items-center flex-col">
+                <section id="projects">
                     <ProjectsStack/>
                 </section>
 

@@ -52,8 +52,8 @@ export function StackCard({
                 <div
                     className="rounded-[20px] p-px"
                     style={{
-                        background: 'linear-gradient(135deg, rgba(99,102,241,0.35) 0%, rgba(139,92,246,0.15) 50%, rgba(99,102,241,0.05) 100%)',
-                        boxShadow: '0 0 40px rgba(99,102,241,0.12), 0 0 80px rgba(99,102,241,0.06)',
+                        background: 'linear-gradient(135deg, rgba(30,58,95,0.35) 0%, rgba(91,138,184,0.15) 50%, rgba(30,58,95,0.05) 100%)',
+                        boxShadow: '0 0 40px rgba(30,58,95,0.12), 0 0 80px rgba(30,58,95,0.06)',
                     }}
                 >
                     <LiquidGlassCard
@@ -69,7 +69,7 @@ export function StackCard({
 
                             {/* Ghost number */}
                             <div
-                                className="pointer-events-none absolute right-6 top-4 select-none font-bold leading-none text-indigo-500/10 dark:text-indigo-400/8"
+                                className="pointer-events-none absolute right-6 top-4 select-none font-bold leading-none text-blue-800/10 dark:text-blue-400/8"
                                 style={{fontSize: 'clamp(60px, 8vw, 140px)'}}
                                 aria-hidden="true"
                             >

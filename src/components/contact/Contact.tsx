@@ -12,86 +12,110 @@ export default function Contact() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const form = e.currentTarget;
+        const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+        const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+        const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
+        const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+        const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`);
+        window.open(`mailto:maelseewald@gmx.net?subject=${subject}&body=${body}`);
         setSubmitted(true);
         setTimeout(() => setSubmitted(false), 3000);
     };
 
+    const inputClass =
+        'rounded-xl border border-(--color-surface-hover) bg-(--color-surface) px-4 py-3 text-sm text-(--color-text) outline-none transition-all placeholder:text-(--color-text-muted) focus:border-(--color-accent) focus:bg-(--color-accent-muted)';
+
     return (
         <SectionWrapper>
-            <SectionTitle>Contact</SectionTitle>
+            <SectionTitle subtitle="Let's Talk">Contact</SectionTitle>
 
-            <div className="mt-12 grid gap-12 lg:grid-cols-2">
+            <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
                 {/* Left – Info */}
                 <AnimatedBlock delay={0}>
                     <div className="flex flex-col gap-8">
-                        <Text muted size="lg" className="max-w-md">
-                            Got an idea, a project or just want to say hello?
-                            Feel free to reach out – I'd love to hear from you.
-                        </Text>
+                        <div className="flex flex-col gap-2">
+                            <Text size="lg" className="font-semibold">Have a project in mind?</Text>
+                            <Text muted size="base" className="max-w-sm leading-loose">
+                                Whether it's a collaboration, an idea you want to build, or just a
+                                hello — feel free to reach out. I'll get back to you as soon as I can.
+                            </Text>
+                        </div>
 
-                        {/* Contact Info */}
-                        <div className="flex flex-col gap-4">
-                            <div className="flex items-center gap-3">
-                                <div className="rounded-full bg-(--color-surface) p-2.5">
-                                    <Mail className="h-4 w-4 text-(--color-text)"/>
+                        {/* Contact Details */}
+                        <div className="flex flex-col gap-3">
+                            <a
+                                href="mailto:maelseewald@gmx.net"
+                                className="group flex items-center gap-3"
+                            >
+                                <div className="rounded-xl bg-(--color-accent-muted) p-2.5">
+                                    <Mail className="h-4 w-4 text-(--color-accent)"/>
                                 </div>
-                                <a href="mailto:maelseewald@gmx.net"
-                                   className="text-sm text-(--color-text) transition-colors hover:text-(--color-text-muted)">
+                                <span className="text-sm text-(--color-text) transition-colors group-hover:text-(--color-accent)">
                                     maelseewald@gmx.net
-                                </a>
-                            </div>
+                                </span>
+                            </a>
                             <div className="flex items-center gap-3">
-                                <div className="rounded-full bg-(--color-surface) p-2.5">
-                                    <MapPin className="h-4 w-4 text-(--color-text)"/>
+                                <div className="rounded-xl bg-(--color-surface) p-2.5">
+                                    <MapPin className="h-4 w-4 text-(--color-text-muted)"/>
                                 </div>
-                                <Text size="sm">Switzerland</Text>
+                                <Text size="sm" muted>Switzerland</Text>
                             </div>
                         </div>
 
+                        {/* Divider */}
+                        <div className="h-px w-12 bg-(--color-surface-hover)"/>
+
                         {/* Social Links */}
-                        <div className="flex items-center gap-3">
-                            <a
-                                href="https://github.com/maelseewald"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="rounded-full bg-(--color-surface) p-3 text-(--color-text) transition-colors hover:bg-(--color-surface-hover)"
-                                aria-label="GitHub"
-                            >
-                                <GithubIcon className="h-5 w-5"/>
-                            </a>
-                            <a
-                                href="https://www.linkedin.com/in/ma%C3%ABl-seewald-40633937a/"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="rounded-full bg-(--color-surface) p-3 text-(--color-text) transition-colors hover:bg-(--color-surface-hover)"
-                                aria-label="LinkedIn"
-                            >
-                                <LinkedInIcon className="h-5 w-5"/>
-                            </a>
+                        <div className="flex flex-col gap-2">
+                            <Text muted size="xs" className="uppercase tracking-widest">Find me on</Text>
+                            <div className="flex items-center gap-3">
+                                <a
+                                    href="https://github.com/maelseewald"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-2 rounded-full border border-(--color-surface-hover) bg-(--color-surface) px-4 py-2 text-sm text-(--color-text) transition-colors hover:bg-(--color-surface-hover)"
+                                    aria-label="GitHub"
+                                >
+                                    <GithubIcon className="h-4 w-4"/>
+                                    GitHub
+                                </a>
+                                <a
+                                    href="https://www.linkedin.com/in/ma%C3%ABl-seewald-40633937a/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-2 rounded-full border border-(--color-surface-hover) bg-(--color-surface) px-4 py-2 text-sm text-(--color-text) transition-colors hover:bg-(--color-surface-hover)"
+                                    aria-label="LinkedIn"
+                                >
+                                    <LinkedInIcon className="h-4 w-4"/>
+                                    LinkedIn
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </AnimatedBlock>
 
                 {/* Right – Form */}
-                <AnimatedBlock delay={0.15}>
+                <AnimatedBlock delay={0.12}>
                     <LiquidGlassCard
                         draggable={false}
                         expandable={false}
                         blurIntensity="xl"
                         glowIntensity="sm"
                         shadowIntensity="sm"
-                        borderRadius="16px"
+                        borderRadius="20px"
                         className="w-full"
                     >
-                        <form onSubmit={handleSubmit} className="relative z-30 flex flex-col gap-5 p-6 sm:p-8">
+                        <form onSubmit={handleSubmit} className="relative z-30 flex flex-col gap-4 p-6 sm:p-8">
                             <div className="flex flex-col gap-1.5">
                                 <Label>Name</Label>
                                 <input
                                     id="name"
+                                    name="name"
                                     type="text"
                                     required
                                     placeholder="Your name"
-                                    className="rounded-lg border border-(--color-surface-hover) bg-transparent px-4 py-2.5 text-sm text-(--color-text) outline-none transition-colors placeholder:text-(--color-text-muted) focus:border-(--color-text-muted)"
+                                    className={inputClass}
                                 />
                             </div>
 
@@ -99,10 +123,11 @@ export default function Contact() {
                                 <Label>Email</Label>
                                 <input
                                     id="email"
+                                    name="email"
                                     type="email"
                                     required
                                     placeholder="your@email.com"
-                                    className="rounded-lg border border-(--color-surface-hover) bg-transparent px-4 py-2.5 text-sm text-(--color-text) outline-none transition-colors placeholder:text-(--color-text-muted) focus:border-(--color-text-muted)"
+                                    className={inputClass}
                                 />
                             </div>
 
@@ -110,27 +135,28 @@ export default function Contact() {
                                 <Label>Message</Label>
                                 <textarea
                                     id="message"
+                                    name="message"
                                     required
-                                    rows={4}
-                                    placeholder="Your message..."
-                                    className="resize-none rounded-lg border border-(--color-surface-hover) bg-transparent px-4 py-2.5 text-sm text-(--color-text) outline-none transition-colors placeholder:text-(--color-text-muted) focus:border-(--color-text-muted)"
+                                    rows={5}
+                                    placeholder="What's on your mind?"
+                                    className={`${inputClass} resize-none`}
                                 />
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={submitted}
-                                className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-(--color-nav-active-bg) px-6 py-2.5 text-sm font-medium text-(--color-nav-active-text) transition-opacity hover:opacity-80 disabled:opacity-60"
+                                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-(--color-nav-active-bg) px-6 py-3 text-sm font-semibold text-(--color-nav-active-text) transition-opacity hover:opacity-80 disabled:opacity-60"
                             >
                                 {submitted ? (
                                     <>
                                         <CheckCircle className="h-4 w-4"/>
-                                        Sent!
+                                        Message opened!
                                     </>
                                 ) : (
                                     <>
                                         <Send className="h-4 w-4"/>
-                                        Send
+                                        Send Message
                                     </>
                                 )}
                             </button>

@@ -34,7 +34,7 @@ export default function Hero() {
 
             {/* Name */}
             <motion.h1
-                className="text-center text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl bg-linear-to-br from-gray-900 via-gray-700 to-indigo-500 bg-clip-text text-transparent dark:from-white dark:via-indigo-200 dark:to-indigo-500"
+                className="text-center text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl bg-linear-to-br from-gray-900 via-gray-700 to-blue-900 bg-clip-text text-transparent dark:from-white dark:via-slate-200 dark:to-blue-300"
                 initial={{opacity: 0, y: 30}}
                 animate={{opacity: 1, y: 0}}
                 transition={{duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1]}}
@@ -72,7 +72,7 @@ export default function Hero() {
             >
                 <button
                     onClick={() => scrollToSection('projects')}
-                    className="flex items-center gap-2 rounded-full bg-(--color-nav-active-bg) px-6 py-2.5 text-sm font-semibold text-(--color-nav-active-text) transition-opacity hover:opacity-80 shadow-[0_0_24px_rgba(99,102,241,0.45)]"
+                    className="flex items-center gap-2 rounded-full bg-(--color-nav-active-bg) px-6 py-2.5 text-sm font-semibold text-(--color-nav-active-text) transition-opacity hover:opacity-80 shadow-[0_0_24px_rgba(30,58,95,0.3)]"
                 >
                     <ExternalLink className="h-4 w-4"/>
                     View Projects
