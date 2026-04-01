@@ -34,7 +34,7 @@ export default function Hero() {
 
             {/* Name */}
             <motion.h1
-                className="text-center text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl bg-linear-to-br from-white via-indigo-100 to-indigo-400 bg-clip-text text-transparent dark:from-white dark:via-indigo-200 dark:to-indigo-500"
+                className="text-center text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl bg-linear-to-br from-gray-900 via-gray-700 to-indigo-500 bg-clip-text text-transparent dark:from-white dark:via-indigo-200 dark:to-indigo-500"
                 initial={{opacity: 0, y: 30}}
                 animate={{opacity: 1, y: 0}}
                 transition={{duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1]}}

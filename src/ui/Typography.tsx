@@ -53,7 +53,7 @@ export function SectionTitle({children, subtitle, className}: SectionTitleProps)
                 <div className="h-px w-8 bg-(--color-accent) opacity-60"/>
             </div>
             {subtitle && (
-                <h2 className="text-center text-4xl font-bold md:text-5xl lg:text-6xl bg-linear-to-br from-(--color-text) to-indigo-400 bg-clip-text text-transparent dark:to-indigo-300">
+                <h2 className="text-center text-4xl font-bold md:text-5xl lg:text-6xl bg-linear-to-br from-(--color-text) to-indigo-600 bg-clip-text text-transparent dark:to-indigo-300">
                     {subtitle}
                 </h2>
             )}
