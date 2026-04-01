@@ -12,26 +12,26 @@ const projects = [
     {
         title: 'Brawl Tracker',
         description:
-            'A web app for tracking and visualizing Brawl Stars stats. Features clean architecture, reusable components and an intuitive user interface.',
+            'Full-stack app that tracks Brawl Stars player stats over time via the official API. Three-tier containerized architecture: React frontend, Spring Boot REST API, PostgreSQL — all wired through Docker and nginx.',
         imageUrl: brawlTracker,
-        tags: ['React', 'Node.js', 'REST API'],
+        tags: ['React', 'Spring Boot', 'PostgreSQL', 'Docker'],
         githubUrl: 'https://github.com/maelseewald/brawlTracker',
         projectUrl: 'https://brawltracker-frontend.onrender.com',
     },
     {
         title: 'Impostor',
         description:
-            'A planning tool for students to organize lectures, assignments and deadlines. Built with a focus on performance, responsive design and great UX.',
+            'A production-ready fullstack boilerplate built to skip the setup and go straight to business logic. React + Vite frontend, Spring Boot backend with Flyway migrations, and a Playwright test suite covering both API and E2E scenarios.',
         imageUrl: impostor,
-        tags: ['React', 'TypeScript', 'Tailwind'],
+        tags: ['React', 'Spring Boot', 'TypeScript', 'Playwright'],
         githubUrl: 'https://github.com/maelseewald/impostor_new',
     },
     {
         title: 'Flashcard App',
         description:
-            'A flashcard learning app with a clean interface for creating and studying custom decks. Built to practice REST API integration and state management.',
+            'Offline-first mobile flashcard app built with React Native and Expo. Users create and study custom decks entirely on-device — no backend, no account. Minimalist design with haptic feedback and local persistence via AsyncStorage.',
         imageUrl: default_img,
-        tags: ['React', 'REST API', 'Java'],
+        tags: ['React Native', 'Expo', 'TypeScript'],
         githubUrl: 'https://github.com/maelseewald/flashcard-app-API-1-seemal',
     },
 ];
