@@ -30,9 +30,11 @@ export default function About() {
                         className="w-56"
                     >
                         <div className="relative z-30 aspect-square overflow-hidden rounded-[20px]">
-                            <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-(--color-surface)">
+                            <div
+                                className="flex h-full w-full flex-col items-center justify-center gap-2 bg-(--color-surface)">
                                 <span className="text-5xl font-bold tracking-tight text-(--color-text-muted)">MS</span>
-                                <span className="text-xs font-medium uppercase tracking-widest text-(--color-text-muted) opacity-60">
+                                <span
+                                    className="text-xs font-medium uppercase tracking-widest text-(--color-text-muted) opacity-60">
                                     Mael Seewald
                                 </span>
                             </div>
@@ -44,7 +46,7 @@ export default function About() {
                 <AnimatedBlock delay={0.15}>
                     <div className="flex flex-col gap-5">
                         <Heading as="h3" size="xl">
-                            Hi, I'm Mael 👋
+                            Hi, I'm Mael
                         </Heading>
                         <Text muted className="max-w-xl leading-loose">
                             I'm a 17-year-old developer from Switzerland with a passion for building
